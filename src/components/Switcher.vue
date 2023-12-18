@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 const props = defineProps({
   data: {
     type: Array,
@@ -14,7 +14,7 @@ const props = defineProps({
   }
 });
 
-const handleClick = (value) => {
+const handleClick = (value: string) => {
   props.handleSelect(value);
 };
 </script>
