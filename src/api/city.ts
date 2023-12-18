@@ -3,7 +3,7 @@ import type City from '@/typing/City';
 import type { ForecastCity } from '@/typing/ForecastCity';
 
 const path = 'https://api.openweathermap.org/data/2.5';
-const geopath = 'http://api.openweathermap.org/geo/1.0/direct';
+const geopath = 'https://api.openweathermap.org/geo/1.0/direct';
 const API_key = import.meta.env.VITE_WEATHER_KEY;
 export const getWeather = async (lat: number, lng: number): Promise<City> => {
   try {
