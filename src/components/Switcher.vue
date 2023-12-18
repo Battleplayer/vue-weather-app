@@ -1,18 +1,11 @@
 <script setup lang="ts">
-const props = defineProps({
-  data: {
-    type: Array,
-    required: true
-  },
-  selected: {
-    type: Object,
-    required: true
-  },
-  handleSelect: {
-    type: Function,
-    required: true
-  }
-});
+import type { Ref } from 'vue';
+
+const props = defineProps<{
+  data: Array<{ value: string; label: string }>;
+  selected: Ref<{ value: string; label: string }>;
+  handleSelect: (value: string) => void;
+}>();
 
 const handleClick = (value: string) => {
   props.handleSelect(value);
@@ -21,11 +14,12 @@ const handleClick = (value: string) => {
 
 <template>
   <div class="switcher">
+    <!-- @vue-ignore -->
     <button
+      :class="{ selected: props.selected?.value === item.value }"
       v-for="item in data"
       :key="item.value"
       class="switcher-item"
-      :class="{ selected: selected.value === item.value }"
       @click="handleClick(item.value)"
     >
       {{ item.label }}

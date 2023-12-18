@@ -3,14 +3,13 @@ import { getDate, getTime } from '@/helper/date';
 import temp from '@/helper/temp';
 import { useRandomInfo } from '@/stores/randomInfo';
 import { storeToRefs } from 'pinia';
-import type { WeatherPoint } from '@/typing/ForecastCity';
 
 const info = useRandomInfo();
 const { temperatureScale } = storeToRefs(info);
 
 const props = defineProps({
   item: {
-    type: Object as WeatherPoint,
+    type: Object,
     required: true
   }
 });

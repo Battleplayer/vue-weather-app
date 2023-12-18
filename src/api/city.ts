@@ -14,6 +14,7 @@ export const getWeather = async (lat: number, lng: number): Promise<City> => {
     return await response.json();
   } catch (e) {
     console.error('Error:', e);
+    return {} as City;
   }
 };
 
@@ -26,6 +27,7 @@ export const getForecast = async (lat: number, lon: number): Promise<ForecastCit
     return await response.json();
   } catch (e) {
     console.error('Error:', e);
+    return {} as ForecastCity;
   }
 };
 export const getForecastDays = async (lat: number, lon: number, days: number): Promise<ForecastCity> => {
@@ -37,6 +39,7 @@ export const getForecastDays = async (lat: number, lon: number, days: number): P
     return await response.json();
   } catch (e) {
     console.error('Error:', e);
+    return {} as ForecastCity;
   }
 };
 
