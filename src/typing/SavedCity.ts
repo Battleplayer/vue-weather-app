@@ -7,4 +7,6 @@ export default interface SavedCity {
   last_update: number;
   icon: string;
   isGeolocation: boolean;
+  lat: number;
+  lon: number;
 }

@@ -4,6 +4,7 @@ import { useSavedCitiesList } from '@/stores/savedCitiesList';
 import { useRandomInfo } from '@/stores/randomInfo';
 import { storeToRefs } from 'pinia';
 import temp from '@/helper/temp';
+import { useCityDetails } from '@/hoc/useCityDetails';
 
 const props = defineProps({
   item: {
@@ -11,47 +12,60 @@ const props = defineProps({
     required: true
   }
 });
-const { name, country, temp: temperature, feels_like, id, icon, isGeolocation } = props.item;
+const { name, country, temp: temperature, feels_like, id, icon, isGeolocation, lat, lon } = props.item;
 
 const info = useRandomInfo();
 const { temperatureScale } = storeToRefs(info);
 const cities = useSavedCitiesList();
 const { removeTheCity } = cities;
+const { getCityDetails } = useCityDetails();
 
 const handleRemoveCity = (id: number) => {
   removeTheCity(id);
 };
+const handleSelect = (lat: number, lon: number) => {
+  getCityDetails(lat, lon);
+};
 </script>
 
 <template>
-  <div class="city-item" :class="{ geo: isGeolocation }" :title="isGeolocation ? 'From geolocation' : ''">
+  <div
+    role="button"
+    @click="handleSelect(lat, lon)"
+    class="city-item"
+    :class="{ geo: isGeolocation }"
+    :title="isGeolocation ? 'From geolocation' : ''"
+  >
     <img :src="`https://openweathermap.org/img/wn/${icon}@2x.png`" alt="weather" class="weather" />
     <div>
       <h4>{{ name }}</h4>
       <p>{{ country }}</p>
     </div>
-    <p class="temp">
+    <span class="temp">
       {{ temp(temperatureScale.value, temperature) }}&deg; /
       <span>{{ temp(temperatureScale.value, feels_like) }}&deg;</span>
-    </p>
-    <button @click="handleRemoveCity(id)" class="remove">X</button>
+    </span>
+    <button @click.stop="handleRemoveCity(id)" class="remove">X</button>
   </div>
 </template>
 
 <style scoped lang="scss">
 .city-item {
+  background-color: transparent;
   border: 1px solid var(--project-color-light);
   color: var(--project-color-white);
   text-align: center;
   border-radius: var(--project-border-radius);
-  padding: var(--project-gap);
+  padding: calc(var(--project-gap) * 2) var(--project-gap);
   width: 180px;
   position: relative;
   transition: all 300ms ease;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  align-items: center;
   gap: var(--project-gap);
+  cursor: pointer;
 
   &:hover {
     background-color: var(--project-color-white);
@@ -63,6 +77,7 @@ const handleRemoveCity = (id: number) => {
 
   h4 {
     font-weight: 700;
+    font-size: 20px;
     margin: 0;
   }
 

@@ -2,22 +2,17 @@
 import Switcher from '@/components/Switcher.vue';
 import { storeToRefs } from 'pinia';
 import { useRandomInfo } from '@/stores/randomInfo';
-import type SwitcherDataItem from '@/typing/SwitcherDataItem';
 import GeolocationMark from '@/components/GeolocationMark.vue';
 import Search from '@/components/Search.vue';
+import tempDataArray from '@/helper/tempDataArray';
 
 const date = new Date().toDateString();
-const dataArray: SwitcherDataItem[] = [
-  { value: 'C', label: 'C' },
-  { value: 'F', label: 'F' }
-];
-
 const info = useRandomInfo();
 const { temperatureScale } = storeToRefs(info);
 const { setTemperatureScale } = info;
 
 const handleSwitch = (value: string) => {
-  const newScaleValue = dataArray.find((el) => el.value === value) || dataArray[0];
+  const newScaleValue = tempDataArray.find((el) => el.value === value) || tempDataArray[0];
   if (value === temperatureScale.value.value) return;
   setTemperatureScale(newScaleValue);
 };
@@ -32,7 +27,7 @@ const handleSwitch = (value: string) => {
     </div>
     <Search />
     <GeolocationMark />
-    <Switcher :data="dataArray" :selected="temperatureScale" :handle-select="handleSwitch" />
+    <Switcher :data="tempDataArray" :selected="temperatureScale" :handle-select="handleSwitch" />
   </header>
 </template>
 

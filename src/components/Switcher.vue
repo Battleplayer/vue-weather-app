@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import type { Ref } from 'vue';
+import type SwitcherDataItem from '@/typing/SwitcherDataItem';
 
 const props = defineProps<{
   data: Array<{ value: string; label: string }>;
-  selected: Ref<{ value: string; label: string }>;
+  selected: SwitcherDataItem;
   handleSelect: (value: string) => void;
 }>();
 

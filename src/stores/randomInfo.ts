@@ -2,9 +2,10 @@ import { defineStore } from 'pinia';
 import { type Ref, ref } from 'vue';
 
 import type SwitcherDataItem from '@/typing/SwitcherDataItem';
+import tempDataArray from '@/helper/tempDataArray';
 
 export const useRandomInfo = defineStore('randomInfo', () => {
-  const temperatureScale: Ref<SwitcherDataItem> = ref({ value: 'C', label: 'C' });
+  const temperatureScale: Ref<SwitcherDataItem> = ref(tempDataArray[0]);
   const isLoading = ref(false);
   const isForecastLoading = ref(false);
   const isModalVisible = ref(false);

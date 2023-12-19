@@ -3,15 +3,22 @@ const props = defineProps({
   close: {
     type: Function,
     required: false
+  },
+  focusInput: {
+    type: Boolean,
+    required: false,
+    default: false
   }
 });
 import debounce from '@/helper/debounce';
 import { searchTheCity } from '@/api/city';
 import { useCityDetails } from '@/hoc/useCityDetails';
-import { type Ref, ref } from 'vue';
+import { onMounted, type Ref, ref } from 'vue';
 import type Location from '@/typing/Location';
 
 const { getCityDetails } = useCityDetails();
+
+const searchRef = ref(null);
 
 const searchData = ref('');
 const citySearchResults: Ref<Array<Location>> = ref([]);
@@ -29,13 +36,19 @@ const handleSelectCity = async (lat: number, lon: number) => {
     props.close();
   }
 };
+
+onMounted(() => {
+  if (props.focusInput) {
+    searchRef.value.focus();
+  }
+});
 </script>
 
 <template>
   <div class="search">
-    <label for="search">
+    <label>
       <img src="@/assets/search.svg" alt="search icon" />
-      <input id="search" type="search" placeholder="Search a city" v-model="searchData" @keyup="handleSearch" />
+      <input ref="searchRef" type="search" placeholder="Search a city" v-model="searchData" @keyup="handleSearch" />
     </label>
     <div class="cities" v-if="citySearchResults.length > 0 && searchData.length > 1">
       <button

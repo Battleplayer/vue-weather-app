@@ -39,6 +39,7 @@ const handleAdd = () => {
   h4 {
     font-weight: 700;
     margin-bottom: 20px;
+    font-size: 20px;
   }
   p {
     font-size: 12px;

@@ -18,6 +18,8 @@ export const useSavedCitiesList = defineStore('savedCitiesList', () => {
       feels_like: city.main.feels_like,
       last_update: Date.now(),
       icon: city.weather[0].icon,
+      lat: city.coord.lat,
+      lon: city.coord.lon,
       isGeolocation
     };
 
