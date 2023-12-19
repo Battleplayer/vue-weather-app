@@ -5,6 +5,7 @@ import { useRandomInfo } from '@/stores/randomInfo';
 import { storeToRefs } from 'pinia';
 import temp from '@/helper/temp';
 import { useCityDetails } from '@/hoc/useCityDetails';
+import { useSelectedCity } from '@/stores/selectedCity';
 
 const props = defineProps({
   item: {
@@ -19,6 +20,8 @@ const { temperatureScale } = storeToRefs(info);
 const cities = useSavedCitiesList();
 const { removeTheCity } = cities;
 const { getCityDetails } = useCityDetails();
+const city = useSelectedCity();
+const { selectedCity } = storeToRefs(city);
 
 const handleRemoveCity = (id: number) => {
   removeTheCity(id);
@@ -33,7 +36,7 @@ const handleSelect = (lat: number, lon: number) => {
     role="button"
     @click="handleSelect(lat, lon)"
     class="city-item"
-    :class="{ geo: isGeolocation }"
+    :class="{ geo: isGeolocation, selected: id === selectedCity?.id }"
     :title="isGeolocation ? 'From geolocation' : ''"
   >
     <img :src="`https://openweathermap.org/img/wn/${icon}@2x.png`" alt="weather" class="weather" />
@@ -67,6 +70,10 @@ const handleSelect = (lat: number, lon: number) => {
   gap: var(--project-gap);
   cursor: pointer;
 
+  &.selected {
+    background-color: var(--project-color-light);
+    color: var(--project-main-bcg);
+  }
   &:hover {
     background-color: var(--project-color-white);
     color: var(--project-field-bcg);
