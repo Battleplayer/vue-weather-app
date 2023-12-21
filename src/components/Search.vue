@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { searchTheCity } from '@/api/searchCityService';
+
 const props = defineProps({
   close: {
     type: Function,
@@ -11,7 +13,7 @@ const props = defineProps({
   }
 });
 import debounce from '@/helper/debounce';
-import { searchTheCity } from '@/api/city';
+
 import { useCityDetails } from '@/hoc/useCityDetails';
 import { onMounted, type Ref, ref } from 'vue';
 import type Location from '@/typing/Location';
@@ -21,7 +23,7 @@ const { getCityDetails } = useCityDetails();
 const searchRef = ref(null);
 
 const searchData = ref('');
-const citySearchResults: Ref<Array<Location>> = ref([]);
+const citySearchResults: Ref<Array<Location>> = ref(null);
 
 const handleSearch = debounce(async function () {
   if (searchData.value.length < 2) return;
@@ -30,7 +32,7 @@ const handleSearch = debounce(async function () {
 
 const handleSelectCity = async (lat: number, lon: number) => {
   await getCityDetails(lat, lon);
-  citySearchResults.value = [];
+  citySearchResults.value = null;
   searchData.value = '';
   if (props.close) {
     props.close();
@@ -50,7 +52,9 @@ onMounted(() => {
       <img src="@/assets/search.svg" alt="search icon" />
       <input ref="searchRef" type="search" placeholder="Search a city" v-model="searchData" @keyup="handleSearch" />
     </label>
-    <div class="cities" v-if="citySearchResults.length > 0 && searchData.length > 1">
+
+    <p class="cities cities--no-data" v-if="citySearchResults?.length === 0 && searchData.length > 1">No city found</p>
+    <div class="cities" v-if="citySearchResults?.length > 0 && searchData.length > 1">
       <button
         class="cities--item"
         v-for="city in citySearchResults"
@@ -78,6 +82,11 @@ onMounted(() => {
     flex-direction: column;
     gap: 5px;
     width: 100%;
+    &--no-data {
+      font-weight: 500;
+      padding: 10px;
+      background-color: var(--project-color-terra-rosa);
+    }
 
     &--item {
       width: 100%;

@@ -1,4 +1,4 @@
-import { getForecast, getForecastDays, getWeather } from '@/api/city';
+import { getForecast, getForecastDays, getWeather } from '@/api/weatherService';
 import { useRandomInfo } from '@/stores/randomInfo';
 import { useSelectedCity } from '@/stores/selectedCity';
 import { useSavedCitiesList } from '@/stores/savedCitiesList';

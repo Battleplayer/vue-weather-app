@@ -21,7 +21,10 @@
     "baseUrl": "./src",
     "paths": {
       "@/*": ["*"]
-    }
+    },
+    "types": [
+      "vue3-toastify/global"
+    ]
   },
   "module": "esnext", // or "commonjs"
   "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "tests/**/*.ts"]

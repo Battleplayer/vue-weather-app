@@ -106,6 +106,7 @@ const handleSelect = (lat: number, lon: number) => {
     height: 40px;
     font-size: 32px;
     background-color: var(--project-color-light);
+    border: 1px solid var(--project-main-bcg);
     color: var(--project-main-bcg);
     border-radius: 50%;
     position: absolute;
