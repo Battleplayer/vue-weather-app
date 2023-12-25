@@ -69,6 +69,7 @@ onMounted(() => {
 
 <style scoped lang="scss">
 .search {
+  z-index: 3;
   display: flex;
   align-items: center;
   gap: calc(var(--project-gap) * 2);
@@ -82,6 +83,8 @@ onMounted(() => {
     flex-direction: column;
     gap: 5px;
     width: 100%;
+    background-color: rgba(255, 255, 255, 0.75);
+    padding: 5px;
     &--no-data {
       font-weight: 500;
       padding: 10px;

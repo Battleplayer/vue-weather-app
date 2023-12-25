@@ -14,7 +14,12 @@ export const useCityDetails = () => {
   const getCityDetails = async (lat: number, lon: number, isGeolocation?: boolean) => {
     setLoadingStatus(true);
     setForecastLoadingStatus(true);
-    Promise.all([getWeather(lat, lon), getForecast(lat, lon), getForecastDays(lat, lon, 3), getForecastDays(lat, lon, 10)])
+    Promise.all([
+      getWeather(lat, lon),
+      getForecast(lat, lon)
+      // todo return when api will exist
+      // getForecastDays(lat, lon, 3), getForecastDays(lat, lon, 10)
+    ])
       .then(
         ([
           cityDetails,
