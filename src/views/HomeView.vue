@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import CitiesList from '@/components/CitiesList/CitiesListView.vue';
-import MainCity from '@/components/MainCity.vue';
+import CitiesList from '@/components/CitiesList/CitiesList.vue';
+import MainCity from '@/components/SelectedCity/SelectedCity.vue';
 </script>
 
 <template>

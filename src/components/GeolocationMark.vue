@@ -28,7 +28,7 @@ const getCurrentLocation = () => {
 
 <template>
   <button title="Get current location" class="geolocation" @click="getCurrentLocation">
-    <img src="@/assets/geolocation.svg" alt="geolocation icon" />
+    <img src="../assets/geolocation.svg" alt="geolocation icon" />
   </button>
 </template>
 

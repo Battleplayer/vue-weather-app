@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useRandomInfo } from '@/stores/randomInfo';
 import { storeToRefs } from 'pinia';
-import Search from '@/components/Search.vue';
+import SearchCityInput from '@/components/SearchCityInput.vue';
 
 const info = useRandomInfo();
 const { toggleModal } = info;
@@ -15,7 +15,7 @@ const handleClose = () => {
 <template>
   <div class="bcg" v-if="isModalVisible">
     <div class="modal-container">
-      <Search :close="handleClose" ref="searchRef" :focusInput="true" />
+      <SearchCityInput :close="handleClose" ref="searchRef" :focusInput="true" />
       <button class="close" @click="handleClose">Close modal</button>
     </div>
   </div>

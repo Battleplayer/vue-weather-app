@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import AddNewItem from '@/components/CitiesList/AddNewItem.vue';
+import AddNewItem from '@/components/CitiesList/CitiesListNewItem.vue';
 import { useSavedCitiesList } from '@/stores/savedCitiesList';
 import { storeToRefs } from 'pinia';
-import CityListItem from '@/components/CitiesList/CityListItem.vue';
+import CityListItem from '@/components/CitiesList/CitiesListItem.vue';
 
 const cities = useSavedCitiesList();
 const { citiesList } = storeToRefs(cities);

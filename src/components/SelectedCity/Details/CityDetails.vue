@@ -3,9 +3,9 @@ import { useRandomInfo } from '@/stores/randomInfo';
 import { storeToRefs } from 'pinia';
 
 import { useSelectedCity } from '@/stores/selectedCity';
-import CityDetailsForecast from '@/components/City/Details/CityDetailsForecast.vue';
+import CityDetailsForecast from '@/components/SelectedCity/Details/CityDetailsForecast.vue';
 import Loader from '@/components/PreLoader.vue';
-import CityDetailsInfo from '@/components/City/Details/CityDetailsInfo.vue';
+import CityDetailsInfo from '@/components/SelectedCity/Details/CityDetailsInfo.vue';
 
 const info = useRandomInfo();
 const city = useSelectedCity();

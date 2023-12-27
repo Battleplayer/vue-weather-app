@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import type SwitcherDataItem from '@/typing/SwitcherDataItem';
-import Switcher from '@/components/Switcher.vue';
+import Switcher from '@/components/SwitcherItem.vue';
 
 const dataArray: Array<SwitcherDataItem> = [
   { value: '1', label: 'text1' },

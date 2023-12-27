@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import CityDetails from '@/components/City/Details/CityDetails.vue';
-import CityLocation from '@/components/City/CityLocation.vue';
+import CityDetails from '@/components/SelectedCity/Details/CityDetails.vue';
+import CityLocation from '@/components/SelectedCity/CityLocation.vue';
 </script>
 
 <template>

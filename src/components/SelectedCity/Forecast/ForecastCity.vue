@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import Switcher from '@/components/Switcher.vue';
+import Switcher from '@/components/SwitcherItem.vue';
 import { ref } from 'vue';
 import type SwitcherDataItem from '@/typing/SwitcherDataItem';
 import { useRandomInfo } from '@/stores/randomInfo';
 import { useSelectedCity } from '@/stores/selectedCity';
 import { storeToRefs } from 'pinia';
 import Loader from '@/components/PreLoader.vue';
-import ForecastRow from '@/components/City/Forecast/ForecastRow.vue';
+import ForecastRow from '@/components/SelectedCity/Forecast/ForecastCityRow.vue';
 
 const daysArray: SwitcherDataItem[] = [
   { value: '3', label: '3 days' },

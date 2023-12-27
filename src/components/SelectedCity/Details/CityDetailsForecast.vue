@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useSelectedCity } from '@/stores/selectedCity';
 import { storeToRefs } from 'pinia';
-import CityDetailsForecastItem from '@/components/City/Details/CityDetailsForecastItem.vue';
+import CityDetailsForecastItem from '@/components/SelectedCity/Details/CityDetailsForecastItem.vue';
 
 const city = useSelectedCity();
 const { forecastForSelectedCity } = storeToRefs(city);

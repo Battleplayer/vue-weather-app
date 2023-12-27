@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import Switcher from '@/components/Switcher.vue';
+import SwitcherDataItem from '@/components/SwitcherItem.vue';
 import { storeToRefs } from 'pinia';
 import { useRandomInfo } from '@/stores/randomInfo';
 import GeolocationMark from '@/components/GeolocationMark.vue';
-import Search from '@/components/Search.vue';
+import SearchCityInput from '@/components/SearchCityInput.vue';
 import tempDataArray from '@/helper/tempDataArray';
 
 const date = new Date().toDateString();
@@ -25,9 +25,9 @@ const handleSwitch = (value: string) => {
       <h4>Hi, User</h4>
       <p>Today is {{ date }}</p>
     </div>
-    <Search />
+    <SearchCityInput />
     <GeolocationMark />
-    <Switcher :data="tempDataArray" :selected="temperatureScale" :handle-select="handleSwitch" />
+    <SwitcherDataItem :data="tempDataArray" :selected="temperatureScale" :handle-select="handleSwitch" />
   </header>
 </template>
 
